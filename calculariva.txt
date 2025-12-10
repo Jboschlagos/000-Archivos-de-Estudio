@@ -1,0 +1,103 @@
+Solución al problema: Calcular el total de una factura con IVA
+PASO 1: Pasos en papel
+Obtener el subtotal de la factura
+
+Obtener el porcentaje de IVA
+
+Calcular el monto del IVA: subtotal × (porcentajeIVA/100)
+
+Calcular el total: subtotal + monto del IVA
+
+Mostrar/retornar el resultado
+
+PASO 2: Variables identificadas
+subtotal: valor base de la factura
+
+porcentajeIVA: porcentaje de impuesto a aplicar
+
+montoIVA: cantidad de dinero correspondiente al IVA
+
+total: subtotal + montoIVA
+
+PASO 3: Pseudocódigo
+text
+INICIO calcularTotalFactura
+  ENTRADA: subtotal, porcentajeIVA
+  
+  // Calcular el monto del IVA
+  montoIVA = subtotal * (porcentajeIVA / 100)
+  
+  // Calcular el total
+  total = subtotal + montoIVA
+  
+  // Retornar el resultado
+  RETORNAR total
+FIN
+PASO 4: Código JavaScript
+javascript
+// PROBLEMA: Calcular el total de una factura con IVA
+
+// Mi solución:
+function calcularTotalFactura(subtotal, porcentajeIVA) {
+    // Validar que los parámetros sean números válidos
+    if (typeof subtotal !== 'number' || typeof porcentajeIVA !== 'number') {
+        throw new Error('Ambos parámetros deben ser números');
+    }
+    
+    if (subtotal < 0 || porcentajeIVA < 0) {
+        throw new Error('Los valores no pueden ser negativos');
+    }
+    
+    // Calcular el monto del IVA
+    const montoIVA = subtotal * (porcentajeIVA / 100);
+    
+    // Calcular el total de la factura
+    const total = subtotal + montoIVA;
+    
+    // Retornar el resultado
+    return total;
+}
+
+// Versión más compacta:
+function calcularTotalFacturaCompacta(subtotal, porcentajeIVA) {
+    return subtotal + (subtotal * porcentajeIVA / 100);
+}
+
+// Ejemplo de uso:
+console.log(calcularTotalFactura(100, 16)); // 116
+console.log(calcularTotalFactura(250, 21)); // 302.5
+console.log(calcularTotalFactura(75.50, 10)); // 83.05
+
+// Función adicional que muestra el desglose:
+function calcularFacturaConDesglose(subtotal, porcentajeIVA) {
+    const montoIVA = subtotal * (porcentajeIVA / 100);
+    const total = subtotal + montoIVA;
+    
+    return {
+        subtotal: subtotal,
+        porcentajeIVA: porcentajeIVA,
+        montoIVA: montoIVA,
+        total: total
+    };
+}
+
+// Ejemplo con desglose:
+console.log(calcularFacturaConDesglose(100, 16));
+// Resultado: { subtotal: 100, porcentajeIVA: 16, montoIVA: 16, total: 116 }
+Explicación:
+Función principal: calcularTotalFactura toma dos parámetros: el subtotal y el porcentaje de IVA
+
+Cálculo: Multiplica el subtotal por el porcentaje de IVA (dividido entre 100) para obtener el monto del IVA, luego suma este monto al subtotal
+
+Validaciones: Incluye validaciones básicas para asegurar que los parámetros sean números no negativos
+
+Versión compacta: Muestra una implementación más concisa
+
+Función extendida: calcularFacturaConDesglose retorna un objeto con todos los componentes de la factura
+
+Posibles mejoras:
+Redondear el resultado a 2 decimales para representar dinero
+
+Manejar diferentes tasas de IVA por tipo de producto
+
+Agregar descuentos adicionales antes del cálculo del IVA
