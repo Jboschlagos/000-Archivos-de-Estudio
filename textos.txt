@@ -1,0 +1,9 @@
+Libros Imprescindibles:
+
+"Clean Code" - Robert C. Martin
+
+"You Don't Know JS" - Kyle Simpson
+
+"Eloquent JavaScript" - Marijn Haverbeke
+
+"Design Patterns" - Gang of Four
