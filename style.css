@@ -1,0 +1,102 @@
+/* Selectores */
+elemento { }           /* Por etiqueta */
+.class { }             /* Por clase */
+#id { }                /* Por ID */
+selector1, selector2 { } /* Múltiples selectores */
+
+/* Ejemplos prácticos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Importante para layout */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.contenedor {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Clase específica */
+.mi-clase {
+    color: blue;
+    font-size: 16px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Selector por ID */
+#mi-id {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Pseudoclases */
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+input:focus {
+    outline: 2px solid blue;
+}
+
+/* Flexbox (muy usado) */
+.flex-container {
+    display: flex;
+    justify-content: space-between; /* center, flex-start, flex-end */
+    align-items: center; /* stretch, flex-start, flex-end */
+    flex-wrap: wrap; /* nowrap, wrap */
+    gap: 20px; /* Espacio entre items */
+}
+
+.flex-item {
+    flex: 1; /* Ocupa espacio disponible */
+    min-width: 200px;
+}
+
+/* Grid (otro sistema de layout) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    grid-gap: 20px;
+}
+
+/* Media queries (responsive) */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 95%;
+    }
+    
+    .grid-container {
+        grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+    
+    .flex-container {
+        flex-direction: column;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.elemento-animado {
+    animation: fadeIn 1s ease-in;
+}
