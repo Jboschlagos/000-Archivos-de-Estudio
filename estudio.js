@@ -326,3 +326,208 @@ console.log("C");
 // 1️⃣3️⃣ No diferenciar null de undefined
 null;        // ausencia intencional
 undefined;   // no asignado
+
+# JavaScript – Funciones y Asincronia
+
+Documento de estudio en codigo. La idea es entender **que es cada cosa**, **cuando usarla** y **errores comunes**.
+
+---
+
+## 1. FUNCIONES
+
+Las funciones encapsulan logica. Reciben datos, procesan y devuelven un resultado.
+
+```js
+// Declaracion clasica
+function suma(a, b) {
+    return a + b;
+}
+
+// Expresion de funcion
+const resta = function(a, b) {
+    return a - b;
+};
+
+// Arrow function
+const multiplicar = (a, b) => a * b;
+```
+
+### Errores comunes
+
+```js
+function sinReturn(a, b) {
+    a + b; // undefined
+}
+```
+
+---
+
+## 2. ARRAYS
+
+Los arrays almacenan listas de datos. Se recorren y transforman.
+
+```js
+const numeros = [1, 2, 3, 4];
+```
+
+### Metodos importantes
+
+```js
+numeros.push(5);      // muta
+numeros.pop();        // muta
+
+const dobles = numeros.map(n => n * 2);   // nuevo array
+const pares = numeros.filter(n => n % 2 === 0);
+const sumaTotal = numeros.reduce((acc, n) => acc + n, 0);
+```
+
+### Error comun
+
+```js
+numeros.map(n => n * 2);
+// numeros no cambia
+```
+
+---
+
+## 3. OBJETOS
+
+Los objetos representan entidades con propiedades y comportamiento.
+
+```js
+const usuario = {
+    nombre: "Ana",
+    edad: 30,
+    saludar() {
+        return `Hola ${this.nombre}`;
+    }
+};
+```
+
+### Acceso
+
+```js
+usuario.nombre;
+usuario["edad"];
+```
+
+### Error comun: this
+
+```js
+const obj = {
+    nombre: "Juan",
+    saludar: () => this.nombre // undefined
+};
+```
+
+---
+
+## 4. CALLBACKS
+
+Un callback es una funcion que se pasa como argumento y se ejecuta despues.
+
+```js
+function procesar(dato, callback) {
+    callback(dato);
+}
+
+procesar("texto", resultado => {
+    console.log(resultado);
+});
+```
+
+### Error comun
+
+```js
+procesar("texto", console.log("hola")); // se ejecuta antes
+```
+
+---
+
+## 5. PROMESAS
+
+Una promesa representa un valor que estara disponible en el futuro.
+
+```js
+const promesa = new Promise((resolve, reject) => {
+    const exito = true;
+
+    if (exito) {
+        resolve("OK");
+    } else {
+        reject("ERROR");
+    }
+});
+```
+
+### Consumo
+
+```js
+promesa
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
+```
+
+### Error comun
+
+```js
+return promesa; // pero no usar then
+```
+
+---
+
+## 6. ASYNC / AWAIT
+
+Sintaxis moderna sobre promesas. Hace el codigo legible.
+
+```js
+async function cargarDatos() {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+}
+```
+
+### Error comun
+
+```js
+const data = fetch(url); // Promise, no datos
+```
+
+---
+
+## 7. ASINCRONIA
+
+JavaScript no espera operaciones lentas.
+
+```js
+console.log("A");
+setTimeout(() => console.log("B"), 1000);
+console.log("C");
+// A C B
+```
+
+---
+
+## 8. RELACION ENTRE TODO
+
+```js
+async function flujo() {
+    const datos = await obtenerDatos();
+    const filtrados = datos.filter(d => d.activo);
+    return filtrados.map(d => d.nombre);
+}
+```
+
+Funciones → callbacks → promesas → async/await
+
+---
+
+## IDEAS CLAVE PARA MEMORIZAR
+
+* map / filter no mutan
+* push / pop si mutan
+* this no funciona en arrow dentro de objetos
+* async siempre devuelve una promesa
+* await solo funciona dentro de async
+
